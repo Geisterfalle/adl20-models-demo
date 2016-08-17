@@ -4,6 +4,6 @@
     "rmType" : "COMPOSITION",
     "name" : "Report",
     "path" : "templates/openEHR-EHR-COMPOSITION.vital_signs_report.v1.adlt",
-    "sha" : "e0d88bc9a68c29915bb76fec88ce88bbf411a245"
+    "sha" : "fb8f4e9621d30206a7cfcc221367a2be4efcafea"
   } ]
 }
