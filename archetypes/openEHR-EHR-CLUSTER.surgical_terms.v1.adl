@@ -1,0 +1,257 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-CLUSTER.surgical_terms.v1
+
+concept
+	[at0000]	-- Chirurgische OP-Zeiten
+language
+	original_language = <[ISO_639-1::de]>
+description
+	original_author = <
+		["name"] = <"Andreas Wilschko">
+	>
+	details = <
+		["de"] = <
+			language = <[ISO_639-1::de]>
+			purpose = <"Dieser Archetyp erfasst die Chirurgie-Zeiten innerhalb einer Operation">
+			use = <"Dieser Archetyp wird innerhalb eines OP-Protokolls/ OP-Berichts verwendet.">
+			keywords = <"time", "surgery", "Operation", "zeit">
+			misuse = <"">
+			copyright = <"Andreas Wilschko">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"69654971BDF736766035DA400404626B">
+	>
+
+definition
+	CLUSTER[at0000] matches {	-- Chirurgische OP-Zeiten
+		items cardinality matches {1..*; unordered} matches {
+			ELEMENT[at0001] occurrences matches {0..1} matches {	-- OP Vorbereitung von
+				value matches {
+					DV_DATE_TIME matches {
+						value matches {yyyy-mm-ddTHH:??:??}
+					}
+				}
+			}
+			ELEMENT[at0002] occurrences matches {0..1} matches {	-- OP Vorbereitung bis
+				value matches {
+					DV_DATE_TIME matches {
+						value matches {yyyy-mm-ddTHH:??:??}
+					}
+				}
+			}
+			ELEMENT[at0003] occurrences matches {0..1} matches {	-- Vorbereitung des Patienten von
+				value matches {
+					DV_DATE_TIME matches {
+						value matches {yyyy-mm-ddTHH:??:??}
+					}
+				}
+			}
+			ELEMENT[at0004] occurrences matches {0..1} matches {	-- Vorbereitung des Patienten bis
+				value matches {
+					DV_DATE_TIME matches {
+						value matches {yyyy-mm-ddTHH:??:??}
+					}
+				}
+			}
+			ELEMENT[at0005] occurrences matches {0..1} matches {	-- OP Nachbereitung von
+				value matches {
+					DV_DATE_TIME matches {
+						value matches {yyyy-mm-ddTHH:??:??}
+					}
+				}
+			}
+			ELEMENT[at0006] occurrences matches {0..1} matches {	-- OP Nachbereitung bis
+				value matches {
+					DV_DATE_TIME matches {
+						value matches {yyyy-mm-ddTHH:??:??}
+					}
+				}
+			}
+			ELEMENT[at0007] occurrences matches {0..1} matches {	-- Nachbereitung des Patienten von
+				value matches {
+					DV_DATE_TIME matches {
+						value matches {yyyy-mm-ddTHH:??:??}
+					}
+				}
+			}
+			ELEMENT[at0010] occurrences matches {0..1} matches {	-- Nachbereitung des Patienten bis
+				value matches {
+					DV_DATE_TIME matches {
+						value matches {yyyy-mm-ddTHH:??:??}
+					}
+				}
+			}
+			ELEMENT[at0009] occurrences matches {0..1} matches {	-- Organpräparation von
+				value matches {
+					DV_DATE_TIME matches {
+						value matches {yyyy-mm-ddTHH:??:??}
+					}
+				}
+			}
+			ELEMENT[at0011] occurrences matches {0..1} matches {	-- Organpräparation bis
+				value matches {
+					DV_DATE_TIME matches {
+						value matches {yyyy-mm-ddTHH:??:??}
+					}
+				}
+			}
+			ELEMENT[at0026] occurrences matches {0..1} matches {	-- OP nicht begonnen/ abgebrochen
+				value matches {
+					DV_DATE_TIME matches {
+						value matches {yyyy-mm-ddTHH:??:??}
+					}
+				}
+			}
+			ELEMENT[at0015] occurrences matches {0..1} matches {	-- OP-Begin
+				value matches {
+					DV_TIME matches {
+						value matches {HH:??:XX}
+					}
+				}
+			}
+			ELEMENT[at0016] occurrences matches {0..1} matches {	-- OP-Ende
+				value matches {
+					DV_TIME matches {
+						value matches {HH:??:XX}
+					}
+				}
+			}
+			ELEMENT[at0017] occurrences matches {0..1} matches {	-- Dauer der OP
+				value matches {
+					C_DV_QUANTITY <
+						property = <[openehr::128]>
+						list = <
+							["1"] = <
+								units = <"min">
+							>
+						>
+					>
+				}
+			}
+			ELEMENT[at0018] occurrences matches {0..1} matches {	-- OP Absagezeitpunkt
+				value matches {
+					DV_DATE_TIME matches {
+						value matches {yyyy-mm-ddTHH:??:??}
+					}
+				}
+			}
+			ELEMENT[at0019] occurrences matches {0..1} matches {	-- Säule besetzt von
+				value matches {
+					DV_DATE_TIME matches {*}
+				}
+			}
+			ELEMENT[at0020] occurrences matches {0..1} matches {	-- Säule besetzt bis
+				value matches {
+					DV_DATE_TIME matches {*}
+				}
+			}
+			allow_archetype CLUSTER[at0021] occurrences matches {0..*} matches {	-- Wartegrund
+				include
+					archetype_id/value matches {/openEHR-EHR-CLUSTER\.delay(-[a-zA-Z0-9_]+)*\.v1/}
+			}
+			allow_archetype CLUSTER[at0022] occurrences matches {0..*} matches {	-- Untersuchung
+				include
+					archetype_id/value matches {/openEHR-EHR-CLUSTER\.time_of_examination(-[a-zA-Z0-9_]+)*\.v1/}
+			}
+			allow_archetype ITEM[at0023] occurrences matches {0..*} matches {	-- Todeszeitpunkt
+				include
+					archetype_id/value matches {/openEHR-EHR-ELEMENT\.time_of_exitus(-[a-zA-Z0-9_]+)*\.v1/}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["de"] = <
+			items = <
+				["at0000"] = <
+					text = <"Chirurgische OP-Zeiten">
+					description = <"unknown">
+				>
+				["at0001"] = <
+					text = <"OP Vorbereitung von">
+					description = <"Der Zeitpunkt zu dem die Vorbereitung des OP Saals beginnt">
+				>
+				["at0002"] = <
+					text = <"OP Vorbereitung bis">
+					description = <"Der Zeitpunkt zu dem die Vorbereitung des OP Saals endet">
+				>
+				["at0003"] = <
+					text = <"Vorbereitung des Patienten von">
+					description = <"Der Zeitpunkt zu dem die Vorbereitung des Patienten beginnt">
+				>
+				["at0004"] = <
+					text = <"Vorbereitung des Patienten bis">
+					description = <"Der Zeitpunkt zu dem die Vorbereitung des Patienten endet">
+				>
+				["at0005"] = <
+					text = <"OP Nachbereitung von">
+					description = <"Der Zeitpunkt zu dem die Nachbereitung des OP Saals beginnt">
+				>
+				["at0006"] = <
+					text = <"OP Nachbereitung bis">
+					description = <"Der Zeitpunkt zu dem die Nachbereitung des OP Saals endet">
+				>
+				["at0007"] = <
+					text = <"Nachbereitung des Patienten von">
+					description = <"Der Zeitpunkt zu dem die Nachbereitung des Patienten beginnt">
+				>
+				["at0009"] = <
+					text = <"Organpräparation von">
+					description = <"Der Zeitpunkt zu dem die Organpräparation beginnt">
+				>
+				["at0010"] = <
+					text = <"Nachbereitung des Patienten bis">
+					description = <"Der Zeitpunkt zu dem die Nachbereitung des Patienten endet">
+				>
+				["at0011"] = <
+					text = <"Organpräparation bis">
+					description = <"Der Zeitpunkt zu dem die Organpräparation endet">
+				>
+				["at0015"] = <
+					text = <"OP-Begin">
+					description = <"Der Zeitpunkt zu dem die OP beginnt">
+				>
+				["at0016"] = <
+					text = <"OP-Ende">
+					description = <"Der Zeitpunkt zu dem die OP endet">
+				>
+				["at0017"] = <
+					description = <"Die Dauer, über die sich eine OP erstreckt">
+					text = <"Dauer der OP">
+					comment = <"Die Anzahl der Minuten von OP-Beginn bis OP-Ende">
+				>
+				["at0018"] = <
+					text = <"OP Absagezeitpunkt">
+					description = <"Zeitpunkt zu dem die Prozedur abgesagt wird">
+				>
+				["at0019"] = <
+					text = <"Säule besetzt von">
+					description = <"Der Zeitpunkt von dem an die Säule besetzt ist">
+				>
+				["at0020"] = <
+					text = <"Säule besetzt bis">
+					description = <"Der Zeitpunkt bis zu dem die Säule besetzt ist">
+				>
+				["at0021"] = <
+					text = <"Wartegrund">
+					description = <"Ein Slot für einen Wartegrund">
+				>
+				["at0022"] = <
+					text = <"Untersuchung">
+					description = <"Ein Slot für eine Untersuchung">
+				>
+				["at0023"] = <
+					text = <"Todeszeitpunkt">
+					description = <"Ein Slot für ein Element, das den zeitpunkt des Todes angibt">
+				>
+				["at0026"] = <
+					text = <"OP nicht begonnen/ abgebrochen">
+					description = <"Der Zeitpunkt zu dem eine Verspätung der Operation eintrifft oder die Operation abgebrochen wird">
+				>
+			>
+		>
+	>

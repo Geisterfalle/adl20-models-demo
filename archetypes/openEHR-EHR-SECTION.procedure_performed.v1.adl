@@ -1,0 +1,51 @@
+﻿archetype (adl_version=1.4)
+	openEHR-EHR-SECTION.procedure_performed.v1
+
+concept
+	[at0000]	-- Durchgeführte Prozeduren
+language
+	original_language = <[ISO_639-1::de]>
+description
+	original_author = <
+		["name"] = <"Andreas Wilschko">
+	>
+	details = <
+		["de"] = <
+			language = <[ISO_639-1::de]>
+			purpose = <"Dieser Archetyp fasst Aktionen zusammen">
+			use = <"Dieser Archetyp stellt einen Teil eines Dokuments dar, in dem Aktionen aufgeführt werden">
+			misuse = <"">
+			copyright = <"">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"BF02BEB8A392D3C22985B235A201184D">
+	>
+
+definition
+	SECTION[at0000] matches {	-- Durchgeführte Prozeduren
+		items cardinality matches {1..*; unordered} matches {
+			allow_archetype ACTION[at0001] occurrences matches {1..*} matches {	-- Aktion
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["de"] = <
+			items = <
+				["at0000"] = <
+					text = <"Durchgeführte Prozeduren">
+					description = <"unknown">
+				>
+				["at0001"] = <
+					text = <"Aktion">
+					description = <"*">
+				>
+			>
+		>
+	>

@@ -1,0 +1,88 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-EVALUATION.operation_report.v1
+
+concept
+	[at0000]	-- Bericht
+language
+	original_language = <[ISO_639-1::de]>
+description
+	original_author = <
+		["name"] = <"">
+	>
+	details = <
+		["de"] = <
+			language = <[ISO_639-1::de]>
+			purpose = <"Dieser Archetyp dient der Erfassung des eigentlichen Berichts-Teils in einem OP-Bericht">
+			use = <"Dieser Archetyp wird in einem OP-Bericht verwendet ">
+			keywords = <"Bericht", ...>
+			misuse = <"">
+			copyright = <"Andreas Wilschko">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"FA75850AA9301A7E9E34AA1D23752462">
+	>
+
+definition
+	EVALUATION[at0000] matches {	-- Bericht
+		data matches {
+			ITEM_TREE[at0001] matches {	-- Baum
+				items cardinality matches {1..*; unordered} matches {
+					ELEMENT[at0003] matches {	-- Bericht
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+					ELEMENT[at0004] occurrences matches {0..1} matches {	-- Indikation
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+					ELEMENT[at0002] occurrences matches {0..1} matches {	-- Empfehlung
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+					ELEMENT[at0005] occurrences matches {0..1} matches {	-- Zusatz
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["de"] = <
+			items = <
+				["at0000"] = <
+					text = <"Bericht">
+					description = <"unknown">
+				>
+				["at0001"] = <
+					text = <"Baum">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Empfehlung">
+					description = <"Handlungen, die postoperativ durchgeführt werden sollten">
+				>
+				["at0003"] = <
+					text = <"Bericht">
+					description = <"Berichttext zu einer Operation">
+				>
+				["at0004"] = <
+					text = <"Indikation">
+					description = <"Indikation im Rahmen einer Operation">
+				>
+				["at0005"] = <
+					text = <"Zusatz">
+					description = <"Zusätzliche Informationen zur OP/ Freitextdiagnosen zum OP">
+				>
+			>
+		>
+	>

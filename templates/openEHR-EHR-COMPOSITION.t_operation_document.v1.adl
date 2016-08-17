@@ -1,0 +1,213 @@
+﻿archetype (adl_version=1.4)
+	openEHR-EHR-COMPOSITION.t_operation_document.v1
+specialize
+	openEHR-EHR-COMPOSITION.report-procedure.v1
+
+concept
+	[at0000.1.1]	-- OP-Dokument
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["de"] = <
+			language = <[ISO_639-1::de]>
+			author = <
+				["name"] = <"Andreas Wilschko">
+			>
+		>
+	>
+description
+	original_author = <
+		["name"] = <"Heather Leslie">
+		["organisation"] = <"Ocean Informatics">
+		["email"] = <"heather.leslie@oceaninformatics.com">
+		["date"] = <"2012-12-10">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"Generic container archetype to carry information about a procedure or operation performed.">
+			use = <"Use as a generic procedure-related archetype to carry information about any procedure or operation performed.  Common examples are: any procedure carried out as a stand-alone activity and not part of a consultation, such as a lumbar puncture or interventional radiology procedure; Endoscopy Report; through to a complete surgical operation report.
+The Context component contains an optional unnamed slot that can be used to:
+- add optional content during templating to support a use-case specific requirements;
+- add EHR model demographic archetypes representing participating parties. While this may not be desired at implementation, this can be useful to demonstrate how demographics may be represented in an implementation ie as a support to clinical content requirements gathering or template review.
+The Sections component has been deliberately left unconstrained to maximise re-use of this archetype.">
+			keywords = <"report", ...>
+			misuse = <"">
+			copyright = <"© openEHR Foundation">
+		>
+		["de"] = <
+			language = <[ISO_639-1::de]>
+			purpose = <"Dieser Archetyp ist ein Container, der andere Archetypen zu einem OP-Protokoll zusammenführt">
+			use = <"Dieser Archetyp wird bei der Erstellung eines OP-Protokolls verwendet">
+			keywords = <"*report(en)", "Operation", "Protokoll">
+			misuse = <"">
+			copyright = <"*© openEHR Foundation(en)">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <"Heath Frankel, Ocean Informatics, Australia", "Sam Heard, Ocean Informatics, Australia", "Sistine Barretto-Daniels, Ocean Informatics, Australia", "Hugh Leslie, Ocean Informatics, Australia", "Ian McNicoll, Ocean Informatics, Australia">
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"F52C04D8D3F203828CB134D30D38DD09">
+	>
+
+definition
+	COMPOSITION[at0000.1.1] matches {	-- OP-Dokument
+		category matches {
+			DV_CODED_TEXT matches {
+				defining_code matches {[openehr::433]}
+			}
+		}
+		context matches {
+			EVENT_CONTEXT matches {
+				other_context matches {
+					ITEM_TREE[at0001] matches {*}
+				}
+			}
+		}
+		content cardinality matches {0..*; unordered} matches {
+			allow_archetype SECTION[at0.0.2] occurrences matches {0..*} matches {	-- OP-Diagnosen
+				include
+					archetype_id/value matches {/openEHR-EHR-SECTION\.t_operation_diagnostics(-[a-zA-Z0-9_]+)*\.v1/}
+			}
+			allow_archetype SECTION[at0.0.3] occurrences matches {0..*} matches {	-- Durchgeführte Prozeduren
+				include
+					archetype_id/value matches {/openEHR-EHR-SECTION\.procedure_performed(-[a-zA-Z0-9_]+)*\.v1/}
+			}
+			allow_archetype SECTION[at0.0.4] occurrences matches {0..*} matches {	-- Risiken
+				include
+					archetype_id/value matches {/.*/}
+			}
+			allow_archetype SECTION[at0.0.5] occurrences matches {0..*} matches {	-- Individuelle klinische Anmerkungen
+				include
+					archetype_id/value matches {/.*/}
+			}
+			allow_archetype SECTION[at0.0.6] occurrences matches {0..*} matches {	-- Bericht
+				include
+					archetype_id/value matches {/openEHR-EHR-SECTION\.t_conclusion_for_op_document(-[a-zA-Z0-9_]+)*\.v1/}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0.0.2"] = <
+					text = <"*SECTION(en)">
+					description = <"**(en)">
+				>
+				["at0.0.3"] = <
+					text = <"*SECTION(en)">
+					description = <"**(en)">
+				>
+				["at0.0.4"] = <
+					text = <"*SECTION(en)">
+					description = <"**(en)">
+				>
+				["at0.0.5"] = <
+					text = <"*SECTION(en)">
+					description = <"**(en)">
+				>
+				["at0.0.6"] = <
+					text = <"*SECTION(en)">
+					description = <"**(en)">
+				>
+				["at0.0.7"] = <
+					text = <"*Neues Element(en)">
+					description = <"**(en)">
+				>
+				["at0000"] = <
+					text = <"Report">
+					description = <"Document to communicate information to others, commonly in response to a request from another party.">
+				>
+				["at0000.1"] = <
+					text = <"Procedure Report">
+					description = <"Document to communicate information to others about any stand-alone procedure or operation performed.">
+				>
+				["at0000.1.1"] = <
+					text = <"Procedure Report!">
+					description = <"Document to communicate information to others about any stand-alone procedure or operation performed.!">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Report ID">
+					description = <"Identification information about the report.">
+				>
+				["at0002.0.1"] = <
+					text = <"*! - *Report ID(en)(en)">
+					description = <"**Identification information about the report.(en)(en)">
+				>
+				["at0005"] = <
+					text = <"Status">
+					description = <"The status of the entire report. Note: This is not the status of any of the report components.">
+				>
+				["at0005.0.1"] = <
+					text = <"*! - *Status(en)(en)">
+					description = <"**The status of the entire report. Note: This is not the status of any of the report components.(en)(en)">
+				>
+			>
+		>
+		["de"] = <
+			items = <
+				["at0.0.2"] = <
+					text = <"OP-Diagnosen">
+					description = <"Die Diagnosen zu dieser OP">
+				>
+				["at0.0.3"] = <
+					text = <"Durchgeführte Prozeduren">
+					description = <"Die im Rahmen dieser Operation durchgeführten Prozeduren">
+				>
+				["at0.0.4"] = <
+					text = <"Risiken">
+					description = <"Die Risiken die zum Zeitpunkt der Prozedur bekannt sind">
+				>
+				["at0.0.5"] = <
+					text = <"Individuelle klinische Anmerkungen">
+					description = <"Die Anmerkungen, die individuell zu einem klinischen Fachbereich variieren">
+				>
+				["at0.0.6"] = <
+					text = <"Bericht">
+					description = <"Die Zusammenfassung der Operation">
+				>
+				["at0.0.7"] = <
+					text = <"Patienten ID">
+					description = <"Die ID des Patienten an dem die OP vollzogen wurde">
+				>
+				["at0000"] = <
+					text = <"*Report(en)">
+					description = <"*Document to communicate information to others, commonly in response to a request from another party.(en)">
+				>
+				["at0000.1"] = <
+					text = <"*Procedure Report(en)">
+					description = <"*Document to communicate information to others about any stand-alone procedure or operation performed.(en)">
+				>
+				["at0000.1.1"] = <
+					text = <"OP-Dokument">
+					description = <"Mit diesem Dokument lassen sich das OP-Protokoll und der OP-Bericht darstellen">
+				>
+				["at0001"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"*Report ID(en)">
+					description = <"*Identification information about the report.(en)">
+				>
+				["at0002.0.1"] = <
+					text = <"Documenten-ID">
+					description = <"Die Identifikationsnummer des Dokuments">
+				>
+				["at0005"] = <
+					text = <"*Status(en)">
+					description = <"*The status of the entire report. Note: This is not the status of any of the report components.(en)">
+				>
+				["at0005.0.1"] = <
+					text = <"Documenten-Status">
+					description = <"Der Status des Gesamtdokuments">
+				>
+			>
+		>
+	>

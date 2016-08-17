@@ -1,0 +1,108 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-CLUSTER.surgical_details.v1
+
+concept
+	[at0000]	-- OP-Details
+language
+	original_language = <[ISO_639-1::de]>
+description
+	original_author = <
+		["name"] = <"">
+	>
+	details = <
+		["de"] = <
+			language = <[ISO_639-1::de]>
+			purpose = <"Dieser Archetyp dient der zusammenfassung verschiedener OP-Details">
+			use = <"Zur Verwendung in ACTION.procedure_undertaken, um OP-Details darzustellen">
+			keywords = <"OP-Details", "Details">
+			misuse = <"">
+			copyright = <"Andreas Wilschko">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"DF4CBD2F8A7127889DB9F74731E6E5F5">
+	>
+
+definition
+	CLUSTER[at0000] matches {	-- OP-Details
+		items cardinality matches {1..*; unordered} matches {
+			allow_archetype CLUSTER[at0001] occurrences matches {0..*} matches {	-- OP-Zeiten
+				include
+					archetype_id/value matches {/openEHR-EHR-CLUSTER\.surgical_terms(-[a-zA-Z0-9_]+)*\.v1/}
+			}
+			allow_archetype CLUSTER[at0002] occurrences matches {0..*} matches {	-- Verlauf
+				include
+					archetype_id/value matches {/.*/}
+			}
+			allow_archetype CLUSTER[at0003] occurrences matches {0..*} matches {	-- Blut und Medikamente
+				include
+					archetype_id/value matches {/.*/}
+			}
+			allow_archetype CLUSTER[at0004] occurrences matches {0..*} matches {	-- Verbrauchsgegenstände
+				include
+					archetype_id/value matches {/.*/}
+			}
+			allow_archetype CLUSTER[at0005] occurrences matches {0..*} matches {	-- Blutsperre
+				include
+					archetype_id/value matches {/.*/}
+			}
+			allow_archetype CLUSTER[at0006] occurrences matches {0..*} matches {	-- Lagerung
+				include
+					archetype_id/value matches {/.*/}
+			}
+			allow_archetype CLUSTER[at0007] occurrences matches {0..*} matches {	-- Entnommene Proben
+				include
+					archetype_id/value matches {/.*/}
+			}
+			allow_archetype CLUSTER[at0008] occurrences matches {0..*} matches {	-- Operative Durchleuchtung
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["de"] = <
+			items = <
+				["at0000"] = <
+					text = <"OP-Details">
+					description = <"unknown">
+				>
+				["at0001"] = <
+					text = <"OP-Zeiten">
+					description = <"Für eine OP relevante Zeiten">
+				>
+				["at0002"] = <
+					text = <"Verlauf">
+					description = <"Der Verlauf einer OP ( Technische Geräte, etc)">
+				>
+				["at0003"] = <
+					text = <"Blut und Medikamente">
+					description = <"Verabreichte Blutpräparate und Medikamente">
+				>
+				["at0004"] = <
+					text = <"Verbrauchsgegenstände">
+					description = <"Verwaltung von Verbrauchgegenständen innerhalb einer OP">
+				>
+				["at0005"] = <
+					text = <"Blutsperre">
+					description = <"Hier werden eingesetzte Blutsperren erfasst">
+				>
+				["at0006"] = <
+					text = <"Lagerung">
+					description = <"Hier werden Details zur Lagerung Erfasst">
+				>
+				["at0007"] = <
+					text = <"Entnommene Proben">
+					description = <"Hier werden entnommene Proben erfasst">
+				>
+				["at0008"] = <
+					text = <"Operative Durchleuchtung">
+					description = <"Details zur Durchleuchtung während einer OP">
+				>
+			>
+		>
+	>

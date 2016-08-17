@@ -1,0 +1,149 @@
+﻿archetype (adl_version=1.4)
+	openEHR-EHR-SECTION.t_operation_diagnostics.v1
+specialize
+	openEHR-EHR-SECTION.diagnostic_reports.v1
+
+concept
+	[at0000.1]	-- OP-Diagnosen
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["de"] = <
+			language = <[ISO_639-1::de]>
+			author = <
+				["name"] = <"Andreas Wilschko">
+			>
+		>
+		["ru"] = <
+			language = <[ISO_639-1::ru]>
+			author = <
+				["organisation"] = <"RusBITech РусБИТех, Москва">
+				["name"] = <"Art Latyp Латыпов Артур Шамилевич">
+			>
+			accreditation = <"hmm">
+		>
+	>
+description
+	original_author = <
+		["name"] = <"Heather Leslie">
+		["organisation"] = <"Ocean Informatics">
+		["email"] = <"heather.leslie@oceaninformatics.com">
+		["date"] = <"7/03/2010">
+	>
+	details = <
+		["ru"] = <
+			language = <[ISO_639-1::ru]>
+			purpose = <"Дизайн представления списка обоснования диагнозов">
+			use = <"Используется для поддержки представления списка обоснований диагноза">
+			keywords = <"диагностический", "список", "обоснование", "уточненный", "лаборатория", "визуализация", "радиология", "патоморфология", "диагноз", "окончательный", "предварительный", "рабочий">
+			misuse = <"">
+			copyright = <"© openEHR Foundation">
+		>
+		["de"] = <
+			language = <[ISO_639-1::de]>
+			purpose = <"Dieser Archetyp dient dazu die Diagnosen innerhalb eines OP-Dokuments zusammenzufügen">
+			use = <"Einzelne Diagnosen werden zu einem Bündel an Diagnosen zusammengefügt">
+			keywords = <"*diagnostic(en)", "*report(en)", "*laboratory(en)", "*imaging(en)", "*radiology(en)", "*pathology(en)", "*list(en)", "Diagnose", "Diagnosen">
+			misuse = <"">
+			copyright = <"*© openEHR Foundation(en)">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To demonstrate a design pattern for representation of a List of Diagnostic Reports.">
+			use = <"Use to support the representation of diagnostic reports that have been recorded.">
+			keywords = <"diagnostic", "report", "laboratory", "imaging", "radiology", "pathology", "list">
+			misuse = <"">
+			copyright = <"© openEHR Foundation">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <"Ian McNicoll, Ocean Informatics, Australia", "Heath Frankel, Ocean Informatics, Australia">
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"F205A4AD91383D007429960AE527F645">
+	>
+
+definition
+	SECTION[at0000.1] matches {	-- OP-Diagnosen
+		items cardinality matches {0..*; unordered} matches {
+			allow_archetype EVALUATION[at0003] occurrences matches {0..*} matches {	-- OP-Diagnose
+				include
+					archetype_id/value matches {/openEHR-EHR-EVALUATION\.t_operation_diagnosis(-[a-zA-Z0-9_]+)*\.v1/}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["de"] = <
+			items = <
+				["at0000"] = <
+					text = <"*Diagnostic Reports(en)">
+					description = <"*Suggested design pattern for including Diagnostic Reports in a template.(en)">
+				>
+				["at0000.1"] = <
+					text = <"OP-Diagnosen">
+					description = <"Ein Dokumentteil, der OP-Diagnosen zusammenfasst">
+				>
+				["at0001"] = <
+					text = <"*Laboratory reports(en)">
+					description = <"*Slot constrained to specifically include archetypes representing reports/results of laboratory tests.(en)">
+				>
+				["at0002"] = <
+					text = <"*Imaging reports(en)">
+					description = <"*Slot constrained to specifically include archetypes representing reports/results of imaging tests.(en)">
+				>
+				["at0003"] = <
+					text = <"OP-Diagnose">
+					description = <"Ein Slot, der genau eine Diagnose einbindet.">
+				>
+			>
+		>
+		["ru"] = <
+			items = <
+				["at0000"] = <
+					text = <"Обоснование диагноза">
+					description = <"Предлагаемый дизайн для включения в шаблон обоснований диагнозов">
+				>
+				["at0000.1"] = <
+					text = <"*Diagnostic Reports!(en)">
+					description = <"*Suggested design pattern for including Diagnostic Reports in a template.!(en)">
+				>
+				["at0001"] = <
+					text = <"Отчеты о лабораторных данных">
+					description = <"Слот, включающий архетипы результатов лабораторных тестов">
+				>
+				["at0002"] = <
+					text = <"Отчеты по методам визуализации">
+					description = <"Слот, включающий архетипы визуализационных обследований">
+				>
+				["at0003"] = <
+					text = <"Эпикриз с обоснованием диагноза">
+					description = <"Слот, включающий архетипы для краткого описания лабораторных и других параклинических результатов">
+				>
+			>
+		>
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Diagnostic Reports">
+					description = <"Suggested design pattern for including Diagnostic Reports in a template.">
+				>
+				["at0000.1"] = <
+					text = <"Diagnostic Reports!">
+					description = <"Suggested design pattern for including Diagnostic Reports in a template.!">
+				>
+				["at0001"] = <
+					text = <"Laboratory reports">
+					description = <"Slot constrained to specifically include archetypes representing reports/results of laboratory tests.">
+				>
+				["at0002"] = <
+					text = <"Imaging reports">
+					description = <"Slot constrained to specifically include archetypes representing reports/results of imaging tests.">
+				>
+				["at0003"] = <
+					text = <"Diagnostic report synopsis">
+					description = <"Slot constrained to include archetypes representing narrative synopses of laboratory and/or imaging test results.">
+				>
+			>
+		>
+	>

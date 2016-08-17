@@ -1,0 +1,99 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-CLUSTER.time_of_examination.v1
+
+concept
+	[at0000]	-- Untersuchungszeit
+language
+	original_language = <[ISO_639-1::de]>
+description
+	original_author = <
+		["name"] = <"">
+	>
+	details = <
+		["de"] = <
+			language = <[ISO_639-1::de]>
+			purpose = <"Dieser Archetyp bezeichnet einen Untersuchungszeitpunkt">
+			use = <"Nutzung zur Modellierung einer untersuchungszeit">
+			misuse = <"">
+			copyright = <"Andreas Wilschko">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"F299DFDE6205E5DCEC2E312DAAFC9EC9">
+	>
+
+definition
+	CLUSTER[at0000] matches {	-- Untersuchungszeit
+		items cardinality matches {1..*; unordered} matches {
+			ELEMENT[at0001] occurrences matches {0..1} matches {	-- Untersuchung
+				value matches {
+					DV_TEXT matches {*}
+				}
+			}
+			ELEMENT[at0002] occurrences matches {0..1} matches {	-- Bemerkung
+				value matches {
+					DV_TEXT matches {*}
+				}
+			}
+			ELEMENT[at0003] occurrences matches {0..1} matches {	-- Untersuchung ab
+				value matches {
+					DV_TIME matches {
+						value matches {HH:??:XX}
+					}
+				}
+			}
+			ELEMENT[at0004] occurrences matches {0..1} matches {	-- Untersuchung bis
+				value matches {
+					DV_TIME matches {
+						value matches {HH:??:XX}
+					}
+				}
+			}
+			ELEMENT[at0005] occurrences matches {0..1} matches {	-- Untersuchungsdauer
+				value matches {
+					C_DV_QUANTITY <
+						property = <[openehr::128]>
+						list = <
+							["1"] = <
+								units = <"min">
+							>
+						>
+					>
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["de"] = <
+			items = <
+				["at0000"] = <
+					text = <"Untersuchungszeit">
+					description = <"unknown">
+				>
+				["at0001"] = <
+					text = <"Untersuchung">
+					description = <"Bezeichnung der untersuchung">
+				>
+				["at0002"] = <
+					text = <"Bemerkung">
+					description = <"Bemerkungen zur Untersuchung">
+				>
+				["at0003"] = <
+					text = <"Untersuchung ab">
+					description = <"Zeitpunkt zu dem die Untersuchung beginnt">
+				>
+				["at0004"] = <
+					text = <"Untersuchung bis">
+					description = <"Zeitpunkt zu dem die Untersuchung endet">
+				>
+				["at0005"] = <
+					text = <"Untersuchungsdauer">
+					description = <"Die Untersuchungsdauer">
+				>
+			>
+		>
+	>

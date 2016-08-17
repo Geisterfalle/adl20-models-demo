@@ -1,0 +1,70 @@
+﻿archetype (adl_version=1.4)
+	openEHR-EHR-CLUSTER.operation_staff.v1
+
+concept
+	[at0000]	-- OP Personal
+language
+	original_language = <[ISO_639-1::de]>
+description
+	original_author = <
+		["name"] = <"Andreas Wilschko">
+	>
+	details = <
+		["de"] = <
+			language = <[ISO_639-1::de]>
+			purpose = <"Dieser Archetyp dient dazu eine Person innerhalb einer Operation darzustellen.">
+			use = <"Dieser Archetyp wird dazu genutzt eine Person innerhlab einer Operation zu charakterisieren und ihr eine Rolle innerhalb einer Operation zu zuweisen.">
+			keywords = <"Person", "Operation">
+			misuse = <"">
+			copyright = <"">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"7D88020FD8670E22C03FCA599BA4088C">
+	>
+
+definition
+	CLUSTER[at0000] matches {	-- OP Personal
+		items cardinality matches {2..*; unordered} matches {
+			ELEMENT[at0001] matches {	-- Name
+				value matches {
+					DV_TEXT matches {*}
+				}
+			}
+			ELEMENT[at0002] occurrences matches {0..1} matches {	-- Kürzel des verantwortlichen Mitarbeiters
+				value matches {
+					DV_TEXT matches {*}
+				}
+			}
+			allow_archetype CLUSTER[at0012] occurrences matches {1..*} matches {	-- Rolle
+				include
+					archetype_id/value matches {/openEHR-EHR-CLUSTER\.role_in_surgery(-[a-zA-Z0-9_]+)*\.v1/}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["de"] = <
+			items = <
+				["at0000"] = <
+					text = <"OP Personal">
+					description = <"unknown">
+				>
+				["at0001"] = <
+					text = <"Name">
+					description = <"Der Vor- und Nachname der jeweiligen Person">
+				>
+				["at0002"] = <
+					text = <"Kürzel des verantwortlichen Mitarbeiters">
+					description = <"Das interne Kürzel der jeweiligen Person eingetragen">
+				>
+				["at0012"] = <
+					text = <"Rolle">
+					description = <"Hier wird ein Archetyp, der die Rolle der jeweiligen Person beschreibt, eingetragen">
+				>
+			>
+		>
+	>

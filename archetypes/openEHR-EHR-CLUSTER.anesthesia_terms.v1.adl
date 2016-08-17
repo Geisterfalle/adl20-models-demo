@@ -1,0 +1,213 @@
+﻿archetype (adl_version=1.4)
+	openEHR-EHR-CLUSTER.anesthesia_terms.v1
+
+concept
+	[at0000]	-- Anästhesie-Zeiten
+language
+	original_language = <[ISO_639-1::de]>
+description
+	original_author = <
+		["name"] = <"Andreas Wilschko">
+	>
+	details = <
+		["de"] = <
+			language = <[ISO_639-1::de]>
+			purpose = <"Hier werden alle zeitlichen Informationen einer Anästhesie eingetragen.">
+			use = <"In diesem Archetypen werden sämtliche Anästhesiezeiten eingetragen. Dieser Archetyp sollte in ein ACTION, die ein Anästhesie beschreibt eingebunden werden.">
+			keywords = <"Anästesie", ...>
+			misuse = <"">
+			copyright = <"Andreas Wilschko">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"A696328C11850BF990F880AAB10AA0CB">
+	>
+
+definition
+	CLUSTER[at0000] matches {	-- Anästhesie-Zeiten
+		items cardinality matches {1..*; unordered} matches {
+			ELEMENT[at0001] occurrences matches {0..1} matches {	-- Patient abgerufen um
+				value matches {
+					DV_DATE_TIME matches {
+						value matches {yyyy-mm-ddTHH:??:??}
+					}
+				}
+			}
+			ELEMENT[at0002] occurrences matches {0..1} matches {	-- Patient in OP aufgenommen um
+				value matches {
+					DV_DATE_TIME matches {
+						value matches {yyyy-mm-ddTHH:??:??}
+					}
+				}
+			}
+			ELEMENT[at0003] occurrences matches {0..1} matches {	-- Anästhesiepflege-Vorbereitung von
+				value matches {
+					DV_DATE_TIME matches {
+						value matches {yyyy-mm-ddTHH:??:??}
+					}
+				}
+			}
+			ELEMENT[at0004] occurrences matches {0..1} matches {	-- Anästhesiepflege-Vorbereitung bis
+				value matches {
+					DV_DATE_TIME matches {
+						value matches {yyyy-mm-ddTHH:??:??}
+					}
+				}
+			}
+			ELEMENT[at0005] occurrences matches {0..1} matches {	-- Anästhesiepräsenz von
+				value matches {
+					DV_DATE_TIME matches {
+						value matches {yyyy-mm-ddTHH:??:??}
+					}
+				}
+			}
+			ELEMENT[at0009] occurrences matches {0..1} matches {	-- Anästhesiepräsenz bis
+				value matches {
+					DV_DATE_TIME matches {
+						value matches {yyyy-mm-ddTHH:??:??}
+					}
+				}
+			}
+			ELEMENT[at0006] occurrences matches {0..1} matches {	-- Anästhesie-Beginn
+				value matches {
+					DV_DATE_TIME matches {
+						value matches {yyyy-mm-ddTHH:??:??}
+					}
+				}
+			}
+			ELEMENT[at0007] occurrences matches {0..1} matches {	-- Anästhesie-Freigabe
+				value matches {
+					DV_DATE_TIME matches {
+						value matches {yyyy-mm-ddTHH:??:??}
+					}
+				}
+			}
+			ELEMENT[at0008] occurrences matches {0..1} matches {	-- Anästhesie-Ende
+				value matches {
+					DV_DATE_TIME matches {
+						value matches {yyyy-mm-ddTHH:??:??}
+					}
+				}
+			}
+			ELEMENT[at0010] occurrences matches {0..1} matches {	-- Anästhesiepflege-Nachbereitung von
+				value matches {
+					DV_DATE_TIME matches {
+						value matches {yyyy-mm-ddTHH:??:??}
+					}
+				}
+			}
+			ELEMENT[at0011] occurrences matches {0..1} matches {	-- Anästhesiepflege-Nachbereitung bis
+				value matches {
+					DV_DATE_TIME matches {
+						value matches {yyyy-mm-ddTHH:??:??}
+					}
+				}
+			}
+			ELEMENT[at0013] occurrences matches {0..1} matches {	-- Anästhesiepräsenz-Dauer
+				value matches {
+					C_DV_QUANTITY <
+						property = <[openehr::128]>
+						list = <
+							["1"] = <
+								units = <"min">
+							>
+						>
+					>
+				}
+			}
+			ELEMENT[at0014] occurrences matches {0..1} matches {	-- Anästhesie-Dauer
+				value matches {
+					C_DV_QUANTITY <
+						property = <[openehr::128]>
+						list = <
+							["1"] = <
+								units = <"min">
+							>
+						>
+					>
+				}
+			}
+			ELEMENT[at0015] occurrences matches {0..1} matches {	-- Anästhesiepflege-Nachbearbeitung-Dauer
+				value matches {
+					C_DV_QUANTITY <
+						property = <[openehr::128]>
+						list = <
+							["1"] = <
+								units = <"min">
+							>
+						>
+					>
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["de"] = <
+			items = <
+				["at0000"] = <
+					text = <"Anästhesie-Zeiten">
+					description = <"unknown">
+				>
+				["at0001"] = <
+					text = <"Patient abgerufen um">
+					description = <"Zeitpunkt zu dem ein Patient abgerufen wird">
+				>
+				["at0002"] = <
+					text = <"Patient in OP aufgenommen um">
+					description = <"Zeitpunkt zu den ein Patient in die OP aufgenommen wird">
+				>
+				["at0003"] = <
+					text = <"Anästhesiepflege-Vorbereitung von">
+					description = <"c">
+				>
+				["at0004"] = <
+					text = <"Anästhesiepflege-Vorbereitung bis">
+					description = <"Zeitpunkt zu dem die Anästhesiepflegevorbereitung abgeschlossen wird">
+				>
+				["at0005"] = <
+					text = <"Anästhesiepräsenz von">
+					description = <"Zeitpunkt von dem an die Anästhesiepräsenz beginnt">
+				>
+				["at0006"] = <
+					text = <"Anästhesie-Beginn">
+					description = <"Zeitpunkt zu dem die Anästhesie beginnt">
+				>
+				["at0007"] = <
+					text = <"Anästhesie-Freigabe">
+					description = <"Zeitpunkt zu dem der Patient durch die Anästhesie freigegeben wird">
+				>
+				["at0008"] = <
+					text = <"Anästhesie-Ende">
+					description = <"Zeitpunkt zu dem die Anästhesie endet">
+				>
+				["at0009"] = <
+					text = <"Anästhesiepräsenz bis">
+					description = <"Zeitpunkt bis zu dem die Anästhesiepräsenz andauert">
+				>
+				["at0010"] = <
+					text = <"Anästhesiepflege-Nachbereitung von">
+					description = <"Zeitpunkt zu dem die Anästhesiepflegenachbereitung begonnen wird">
+				>
+				["at0011"] = <
+					text = <"Anästhesiepflege-Nachbereitung bis">
+					description = <"Zeitpunkt bis zu dem die Anästhesiepflegenachbereitung andauert">
+				>
+				["at0013"] = <
+					text = <"Anästhesiepräsenz-Dauer">
+					description = <"Die Anzahl an Minuten, über die sich die Anästhesiepräsenz erstreckt">
+				>
+				["at0014"] = <
+					text = <"Anästhesie-Dauer">
+					description = <"Die Anzahl an Minuten, über die sich die Anästhesieerstreckt">
+				>
+				["at0015"] = <
+					text = <"Anästhesiepflege-Nachbearbeitung-Dauer">
+					description = <"Die Anzhal an Minuten, über die sich die Anästhesiepflege-Nachbearbeitung erstreckt">
+				>
+			>
+		>
+	>

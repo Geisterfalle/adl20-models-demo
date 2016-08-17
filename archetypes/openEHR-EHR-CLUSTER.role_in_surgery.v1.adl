@@ -1,0 +1,142 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-CLUSTER.role_in_surgery.v1
+
+concept
+	[at0000]	-- Rolle innerhalb des OP
+language
+	original_language = <[ISO_639-1::de]>
+description
+	original_author = <
+		["name"] = <"Andreas Wilschko">
+	>
+	details = <
+		["de"] = <
+			language = <[ISO_639-1::de]>
+			purpose = <"Dieser Archetyp dient dazu Rollen und die damit verbundenen Zeiten innerhalb einer Operation zu erfassen.">
+			use = <"Dieser Archetyp wird in derModellierung einer Rolle einer Person innerhalb einer Operation genutzt">
+			keywords = <"Operation", "Rolle">
+			misuse = <"">
+			copyright = <"Andreas Wilschko">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"432B8600750B5C03347E859383C0D07B">
+	>
+
+definition
+	CLUSTER[at0000] matches {	-- Rolle innerhalb des OP
+		items cardinality matches {1..*; unordered} matches {
+			ELEMENT[at0003] occurrences matches {0..1} matches {	-- Aufgabe im OP
+				value matches {
+					DV_CODED_TEXT matches {
+						defining_code matches {
+							[local::
+							at0004, 	-- Operateur
+							at0005, 	-- Assistent
+							at0006, 	-- Instrumentar
+							at0007, 	-- Saaldienst
+							at0008, 	-- Anästhesist
+							at0013, 	-- Springer
+							at0015, 	-- Organisation
+							at0014, 	-- Gast
+							at0016]	-- Sonstige
+						}
+					}
+				}
+			}
+			ELEMENT[at0011] occurrences matches {0..1} matches {	-- Aufgabentext
+				value matches {
+					DV_TEXT matches {*}
+				}
+			}
+			ELEMENT[at0009] occurrences matches {0..1} matches {	-- Begin der Aufgabe in diesem OP
+				value matches {
+					DV_TIME matches {
+						value matches {HH:MM:SS}
+					}
+				}
+			}
+			ELEMENT[at0010] occurrences matches {0..1} matches {	-- Ende der Aufgabe in diesem OP
+				value matches {
+					DV_TIME matches {
+						value matches {HH:MM:SS}
+					}
+				}
+			}
+			ELEMENT[at0012] occurrences matches {0..1} matches {	-- Hierrachie
+				value matches {
+					DV_COUNT matches {*}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["de"] = <
+			items = <
+				["at0000"] = <
+					text = <"Rolle innerhalb des OP">
+					description = <"unknown">
+				>
+				["at0003"] = <
+					text = <"Aufgabe im OP">
+					description = <"Eine Aufgabe innerhalb einer Operation">
+				>
+				["at0004"] = <
+					text = <"Operateur">
+					description = <"Diejenige Person, die die Aktion \"Operation\" durchführt">
+				>
+				["at0005"] = <
+					text = <"Assistent">
+					description = <"Diejenige Person, die bei der Operation assistiert">
+				>
+				["at0006"] = <
+					text = <"Instrumentar">
+					description = <"Diejenige Person, die die Rolle des Instrumentars einnimmt ">
+				>
+				["at0007"] = <
+					text = <"Saaldienst">
+					description = <"Diejenige Person, die die Rolle des Saaldienst einnimmt">
+				>
+				["at0008"] = <
+					text = <"Anästhesist">
+					description = <"Diejenige Person, die für die Anästheie verantwortlich ist">
+				>
+				["at0009"] = <
+					text = <"Begin der Aufgabe in diesem OP">
+					description = <"Die Uhrzeit zu der die Rolle eingenommen wird">
+				>
+				["at0010"] = <
+					text = <"Ende der Aufgabe in diesem OP">
+					description = <"Die Uhrzeit zu der die Rolle beendet/abgegeben wird">
+				>
+				["at0011"] = <
+					text = <"Aufgabentext">
+					description = <"Verschriftlichung der jeweiligen Rolle mit eventuellen Details">
+				>
+				["at0012"] = <
+					text = <"Hierrachie">
+					description = <"Die Hierarchie innerhalb einer Rolle. Beispiel: erster und zweiter Saaldienst oder erster und zweiter Operateuer">
+				>
+				["at0013"] = <
+					text = <"Springer">
+					description = <"Diejenige Person, die die Rolle eines Springer einnimmt">
+				>
+				["at0014"] = <
+					text = <"Gast">
+					description = <"Diejenige Person, die die dem OP lediglich als Gast beiwohnt">
+				>
+				["at0015"] = <
+					text = <"Organisation">
+					description = <"Diejenige Person, die innerhlab eines OP die Organisation übernimmt">
+				>
+				["at0016"] = <
+					text = <"Sonstige">
+					description = <"Eine andere, nicht angegebene, Rolle">
+				>
+			>
+		>
+	>

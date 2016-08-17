@@ -1,0 +1,47 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-ELEMENT.time_of_exitus.v1
+
+concept
+	[at0000]	-- Der Todeszeitpunkt eines Patienten
+language
+	original_language = <[ISO_639-1::de]>
+description
+	original_author = <
+		["name"] = <"">
+	>
+	details = <
+		["de"] = <
+			language = <[ISO_639-1::de]>
+			purpose = <"Dieser Archetyp erfasst den Todeszeitpunkt">
+			use = <"Zur Erfassung eines Todeszeitpunktes">
+			keywords = <"Tod", "tot", "Todeszeitpunkt">
+			misuse = <"">
+			copyright = <"Andreas Wilschko">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"1929A85EA602F52359D14127993E9F28">
+	>
+
+definition
+	ELEMENT[at0000] matches {	-- Der Todeszeitpunkt eines Patienten
+		value matches {
+			DV_DATE_TIME matches {
+				value matches {yyyy-mm-ddTHH:??:??}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["de"] = <
+			items = <
+				["at0000"] = <
+					text = <"Der Todeszeitpunkt eines Patienten">
+					description = <"Der Todeszeitpunkt eines Patienten">
+				>
+			>
+		>
+	>
