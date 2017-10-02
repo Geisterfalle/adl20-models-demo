@@ -23,7 +23,13 @@ definition
                     EVENT[id3] matches {    -- Any event
                         data matches {
                             ITEM_TREE[id4] matches {
-                                items
+                                items matches {
+                                    ELEMENT[id9] occurrences matches {1} matches {    -- Test
+                                        value matches {
+                                            DV_TEXT[id10] 
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -42,6 +48,10 @@ terminology
             ["id3"] = <
                 text = <"Any event">
                 description = <"Any event">
+            >
+            ["id9"] = <
+                text = <"Test">
+                description = <"Test">
             >
         >
     >
