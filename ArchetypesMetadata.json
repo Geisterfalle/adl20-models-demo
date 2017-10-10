@@ -223,5 +223,12 @@
     "path" : "archetypes/openEHR-EHR-OBSERVATION.test.v1.adls",
     "sha" : "5dbf0bb5ab0b6d82f1ae36249fbd9aab9edfaba1",
     "languages" : [ "en" ]
+  }, {
+    "id" : "openEHR-EHR-OBSERVATION.testarchetype.v1.0.0",
+    "rmType" : "OBSERVATION",
+    "name" : "TestArchetype",
+    "path" : "archetypes/openEHR-EHR-OBSERVATION.testarchetype.v1.adls",
+    "sha" : "f7d46c262a5d133c6724aa844ac70b0eb278171f",
+    "languages" : [ "en" ]
   } ]
 }
